@@ -2,6 +2,7 @@
 class Protein:
 
    def __init__(self):
+      self.id = None
       self.C2H2 = None
       self.C2WH2 = None
       self.GATA3 = None
