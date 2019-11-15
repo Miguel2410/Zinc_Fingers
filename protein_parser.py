@@ -61,14 +61,6 @@ def parse_proteins(directory):
 
                 # Length of total protein
                 length = length + (len(protein[key].seq))
-                if length > 100:
-                    length_factor = 0
-                elif 200  >= length >= 100:
-                    length_factor = 1
-                elif 400 >= length > 200:
-                    length_factor = 2
-                else:
-                    length_factor = 3
 
                 #Number of Hystidines + Cysteine
                 Hys = (str(protein[key].seq).count("H"))
@@ -79,6 +71,15 @@ def parse_proteins(directory):
                 ARG =  (str(protein[key].seq).count("R"))
                 LYS =  (str(protein[key].seq).count("K"))
                 ARG_LYS_HIS = ARG_LYS_HIS + Hys + ARG + LYS
+            print (file[:4], length)
+            if 200 > length > 0:
+                length_factor = 0
+            elif 400  >= length >= 200:
+                length_factor = 1
+            elif 600 >= length > 400:
+                length_factor = 2
+            else:
+                length_factor = 3
             
             prot = Protein(
                     name = file[:-4],
