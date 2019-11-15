@@ -4,7 +4,7 @@ import Bio.motifs as motifs
 from Protein import Protein
 import re
 
-folder = sys.argv[1]
+
 
 def parse_proteins(directory):
 
@@ -63,9 +63,9 @@ def parse_proteins(directory):
                 length = length + (len(protein[key].seq))
                 if length > 100:
                     length_factor = 0
-                elif 200  => length => 100:
+                elif 200  >= length >= 100:
                     length_factor = 1
-                elif 400 => length > 200:
+                elif 400 >= length > 200:
                     length_factor = 2
                 else:
                     length_factor = 3
@@ -97,6 +97,6 @@ def parse_proteins(directory):
 
     return proteins
 
-if name == __main__:
+if __name__ == "__main__":
     print ("Executing this file as main show you the list of protein objects:")
-    print(parse_proteins(folder))
+    #print(parse_proteins(folder))

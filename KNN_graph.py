@@ -1,3 +1,4 @@
+import Protein
 
 class D_G_node:
     """This class can be used to build any kind of directed graph this 
@@ -41,12 +42,12 @@ class K_NN_Graph:
     
     
     def add_nodes(self, objects, new_distance_matrix = False):
-		for obj in objects:
-            self.nodes[obj] = D_G_node(obj)
+       for obj in objects:
+         self.nodes[obj] = D_G_node(obj)
             
-        if new_distance_matrix:
-			self.dist_mat = new_distance_matrix 
-        self.build_graph()  
+       if new_distance_matrix:
+		   self.dist_mat = new_distance_matrix
+       self.build_graph()
 
     
     def get_k_nearest_nodes(self, target):
@@ -65,7 +66,7 @@ class K_NN_Graph:
 		return neig_info
 		
 		
-    def self.build_graph():
-        print("Work in process")   
+    def build_graph(self):
+      print("Work in process")
         # distance function stored in dist_fun, distance matrix in 
         # dist_mat and unconnected nodes in the dictionary nodes
