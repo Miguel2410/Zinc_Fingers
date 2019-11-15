@@ -80,9 +80,9 @@ def parse_proteins(directory):
                     ZN2C6 = ZN2C6_occur, 
                     zinc=ZN_num, 
                     prot_len=length, 
-                    pos=ARG_LYS_HIS, 
+                    pos=ARG_LYS_HIS/length, 
                     num_chain=chain_num, 
-                    hys_cys=Hys_Cys)
+                    hys_cys=Hys_Cys/length)
             
             proteins.append(prot)
 
