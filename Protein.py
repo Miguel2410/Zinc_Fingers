@@ -25,5 +25,10 @@ class Protein:
    def toString(self):
       print(self.name + "  " +str(self.zinc))
       print(self.name + "  " +str(self.hys_cys))
+
+      def toString(self):
+         print(self.name + "  " + str(self.zinc))
+         print(self.name + "  " + str(self.hys_cys))
+
       
    
