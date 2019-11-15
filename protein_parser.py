@@ -22,6 +22,7 @@ def parse_proteins(directory):
         GATA3_occur = 0
         CCHC_occur = 0
         ZN2C6_occur = 0
+        length_factor = 0
 
         if file.endswith(".pdb") or file.endswith(".ent") or file.endswith(".cif"):
             # Check the Zinc ions
@@ -60,6 +61,14 @@ def parse_proteins(directory):
 
                 # Length of total protein
                 length = length + (len(protein[key].seq))
+                if length > 100:
+                    length_factor = 0
+                elif 200  => length => 100:
+                    length_factor = 1
+                elif 400 => length > 200:
+                    length_factor = 2
+                else:
+                    length_factor = 3
 
                 #Number of Hystidines + Cysteine
                 Hys = (str(protein[key].seq).count("H"))
@@ -79,7 +88,7 @@ def parse_proteins(directory):
                     CCHC = CCHC_occur, 
                     ZN2C6 = ZN2C6_occur, 
                     zinc=ZN_num, 
-                    prot_len=length, 
+                    prot_len=length_factor, 
                     pos=ARG_LYS_HIS/length, 
                     num_chain=chain_num, 
                     hys_cys=Hys_Cys/length)
