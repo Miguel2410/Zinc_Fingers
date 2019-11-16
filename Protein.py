@@ -26,5 +26,4 @@ class Protein:
       print(self.name + "  " +str(self.zinc) + " " +str(self.C2H2) + " "+ str(self.C2WH2) + " " + str(self.GATA3) + " " + str(self.prot_len)) 
       print(self.name + "  " +str(self.hys_cys))
       
-   def distance(self, protein_2):
-      print ("Work in process.")
+
