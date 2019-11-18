@@ -12,14 +12,12 @@ for element in pparser.parse_proteins("PDBfiles/"):
 
 dimensions = 10
 
-
 def main():
    folder = "PDBfiles/"
    print ("Executing this file as main show:")
    proteinas = pparser.parse_proteins(folder)
    coords = parse_protein_list(proteinas)
    pp.pprint(kd_tree(coords, dimensions, depth=0))
-
 
 if __name__ == "__main__":
    main()
