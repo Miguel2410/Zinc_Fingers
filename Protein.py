@@ -22,8 +22,9 @@ class Protein:
       manhattan_distance = sum(abs_list)
       return manhattan_distance
 
-   def toString(self):
-      print(self.name + "  " +str(self.zinc) + " " +str(self.C2H2) + " "+ str(self.C2WH2) + " " + str(self.GATA3) + " " + str(self.prot_len)) 
-      print(self.name + "  " +str(self.hys_cys))
+   def toTupple(self):
+      return (self.C2H2, self.C2WH2, self.GATA3, self.CCHC, self.ZN2C6, self.zinc, self.prot_len, self.pos,self.num_chain,self.hys_cys, self.name)
+
+      
       
 

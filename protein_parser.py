@@ -4,8 +4,6 @@ import Bio.motifs as motifs
 from Protein import Protein
 import re
 
-
-
 def parse_proteins(directory):
 
     proteins = list()
@@ -71,7 +69,7 @@ def parse_proteins(directory):
                 ARG =  (str(protein[key].seq).count("R"))
                 LYS =  (str(protein[key].seq).count("K"))
                 ARG_LYS_HIS = ARG_LYS_HIS + Hys + ARG + LYS
-            print (file[:4], length)
+
             if 200 > length > 0:
                 length_factor = 0
             elif 400  >= length >= 200:
