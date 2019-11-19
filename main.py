@@ -1,5 +1,5 @@
 import protein_parser as pparser
-from kdtree import parse_protein_list, kd_tree, nearest_neighbor, delete_element, k_nearest_neighbors
+from KDTree import parse_protein_list, kd_tree, nearest_neighbor, delete_element, k_nearest_neighbors
 import pprint
 
 
@@ -20,10 +20,8 @@ def main():
    #pp.pprint(coords)
    #coords_aux=[(1,3,'1'),(4,5,'2'),(0,4,'3'),(2,4,'4')]
    kdtree = kd_tree(coords, dimensions, depth=0)
-   #pp.pprint(k_nearest_neighbors(4,kdtree, (0,0,0,0,0,0,2,0.16981132075471697,2,0.02358490566037736),0,10))
-   pp.pprint(
-      nearest_neighbor(kdtree , (0 , 0 , 0 , 0 , 0 , 0 , 2 , 0.16981132075471697 , 2 , 0.02358490566037736) , 0 ,
-                          10))
+   pp.pprint(k_nearest_neighbors(10,kdtree, (1,0,0,0,0,0,4,3,2,0.4),0,10))
+   #pp.pprint(nearest_neighbor(kdtree , (0 , 0 , 0 , 0 , 0 , 0 , 2 , 0.16981132075471697 , 2 , 0.02358490566037736) , 0 ,10))
    #a_borrar=(3, 0, 0, 0, 0, 0, 0, 0.3111111111111111, 3, 0.14444444444444443, '1aay')
    #pp.pprint(kdtree.toJson())
    #delete_element(kdtree,a_borrar)

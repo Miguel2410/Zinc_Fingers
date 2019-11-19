@@ -122,15 +122,14 @@ def nearest_neighbor(root, point, depth=0, dimensions=10, list =list()):
 	return closer
 
 
-def k_nearest_neighbors(k, root, point, depth=0, dimensions=10):
-	result = list()
+def k_nearest_neighbors(k, root, point, depth=0, dimensions=10, result=list()):
 	if root is None:
 		return None
-	aux_tree = root
-	for i in range(k):
+	if(manhattan_distance(root.root.value, point) < k):
 		
-		closest = nearest_neighbor(aux_tree, point, depth, dimensions, result)
-		result.append(closest)
-		delete_element(aux_tree, closest)
+		result.append(root.root.id)
 	
+	k_nearest_neighbors(k, root.left, point, result)
+	k_nearest_neighbors(k, root.right, point, result)
+
 	return result
