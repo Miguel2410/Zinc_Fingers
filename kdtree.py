@@ -35,6 +35,27 @@ class KDNode:
 		k_nearest_neighbors(k , self.root.right , point , result)
 		
 		return result
+	
+	def nearest_neighbor(self, , point , depth=0 , dimensions=10):
+		
+		if self.root is None:
+			return None
+		
+		dim = depth % dimensions
+		if point[dim] < int(self.root.value[dim]):
+			next = self.left
+			opposite = self.right
+		else:
+			next = self.right
+			opposite = self.left
+		
+		closer = check_points_closer(point , nearest_neighbor(next , point , depth + 1 , 10) , self.root.value)
+		
+		if manhattan_distance(point , closer) > abs(point[dim] - self.root.value[dim]):
+			closer = check_points_closer(point , nearest_neighbor(opposite , point , depth + 1 , 10) , closer)
+		closer += (self.root.id ,)
+		return closer
+	
 def parse_protein_list(proteins):
 	coords = list()
 	for element in proteins:
