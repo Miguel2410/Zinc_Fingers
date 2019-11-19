@@ -24,7 +24,17 @@ class KDNode:
 			'left': self.left.toJson() if self.left is not None else {},
 			'right': self.right.toJson() if self.right is not None else {}
 		}
+	
+	def k_nearest_neighbors(self, k , point , result=list()):
+		if self.root is None:
+			return None
+		if (manhattan_distance(self.root.root.value , point) < k):
+			result.append(self.root.root.id)
 		
+		k_nearest_neighbors(k , self.root.left , point , result)
+		k_nearest_neighbors(k , self.root.right , point , result)
+		
+		return result
 def parse_protein_list(proteins):
 	coords = list()
 	for element in proteins:

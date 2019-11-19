@@ -1,13 +1,10 @@
 import protein_parser as pparser
-from KDTree import parse_protein_list, kd_tree, nearest_neighbor, delete_element, k_nearest_neighbors
+from KDTree import parse_protein_list, kd_tree, nearest_neighbor, k_nearest_neighbors
 import pprint
 
 
 pp = pprint.PrettyPrinter(indent=4)
 
-#for element in pparser.parse_proteins("/Users/miguel/Desktop/MASTER/APA/Zinc_Fingers/PDBfiles/"):
-#	for element2 in pparser.parse_proteins("/Users/miguel/Desktop/MASTER/APA/Zinc_Fingers/PDBfiles/"):
-#		print(element.name, element2.name, element.distance(element2))
 
 
 dimensions = 10
