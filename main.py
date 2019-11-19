@@ -10,7 +10,7 @@ pp = pprint.PrettyPrinter(indent=4)
 dimensions = 10
 
 def main():
-   folder = "/Users/miguel/Desktop/MASTER/APA/Zinc_Fingers/PDBfiles/"
+   folder = "PDBfiles/"
    print ("Executing this file as main show:")
    proteinas = pparser.parse_proteins(folder)
    coords = parse_protein_list(proteinas)
@@ -26,4 +26,4 @@ def main():
    
 if __name__ == "__main__":
    main()
-   parse_protein_list(pparser.parse_proteins("/Users/miguel/Desktop/MASTER/APA/Zinc_Fingers/PDBfiles/"))
+   parse_protein_list(pparser.parse_proteins("PDBfiles/"))
