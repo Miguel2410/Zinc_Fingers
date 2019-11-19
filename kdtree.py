@@ -12,10 +12,12 @@ class Node:
 		}
 		
 class KDNode:
-	def __init__(self, left = None, right = None, root = Node()):
+	def __init__(self, left = None, right = None, root = Node(), dim=None, cutting_point=None):
 		self.root = root
 		self.left = left
 		self.right = right
+		self.dim = dim
+		self.cut = cutting_point
 	
 	def toJson(self):
 		
@@ -143,3 +145,77 @@ def k_nearest_neighbors(k, root, point,result=list()):
 	k_nearest_neighbors(k, root.right, point, result)
 
 	return result
+
+
+
+class KD_tree:
+	
+	def __init__(self, points,dimensions,depth=0):
+		self.root = self.kd_tree (points,dimensions,depth=0)
+	
+	def kd_tree (self,points,dimensions,depth=0):
+		n = len(points)
+		
+		if n <= 0:
+			return None
+
+		dim = depth % dimensions
+		sorted_points = sorted(points, key=lambda point: point[dim])
+		mid = round(n/2)
+
+		return KDNode(kd_tree (sorted_points[:mid], dimensions,  depth + 1 ), kd_tree (sorted_points[mid+1:], dimensions,  depth + 1 ), Node(sorted_points[mid][len(sorted_points[mid])-1],sorted_points[mid][0:len(sorted_points[mid])-1]), dim, sorted_points[mid][dim])
+
+		
+	def group(self, x, d, k, *argv):
+		dim = argv
+		#print(dim)
+		if dim == tuple():
+			dim = list(range(len(x.__dict__.keys())))
+		#print(dim)
+		values= x.toTupple(*dim)
+		min_d=[]
+		for i in dim:
+			min_d.append(0)
+		valid_nodes = []
+		valid_nodes = self.recursive_group(values, dim, min_d, self.root, d)
+		print(valid_nodes)
+		print(len(valid_nodes))
+		return exhaustive_search(valid_nodes, k, d, *argv)
+		
+	def recursive_group(self,values, dimensions, min_d, node, max_d):
+		if node is None or node.root is None:
+			return tuple()
+		print("max_d= ", max_d)
+		dimention = node.dim
+		valid_nodes = (node.root.id,)
+		if dimention not in dimensions:
+			#print("a")
+			valid_nodes+=self.recursive_group(values, dimensions, min_d, node.left, max_d)
+			valid_nodes+=self.recursive_group(values, dimensions, min_d, node.right, max_d)
+		else:
+			#print("b")
+			mindistfor_d = values[dimention] - node.cut
+			#print(mindistfor_d, dimention)
+			#print("v",values[dimention], node.cut)
+			if mindistfor_d < 0:
+				valid_nodes+=self.recursive_group(values, dimensions, min_d, node.right, max_d)
+				mindistfor_d = -mindistfor_d
+				if mindistfor_d > min_d[dimention]:
+					#print("baa")
+					min_d[dimention] = mindistfor_d
+				if sum(min_d)<max_d:
+					#print("bab")
+					valid_nodes+=self.recursive_group(values, dimensions, min_d, node.left, max_d)
+			else:
+				valid_nodes+=self.recursive_group(values, dimensions, min_d, node.left, max_d)
+				if mindistfor_d > min_d[dimention]:
+					min_d[dimention] = mindistfor_d
+				if sum(min_d)<max_d:
+					#print("bbb")
+					valid_nodes+=self.recursive_group(values, dimensions, min_d, node.right, max_d)
+		return valid_nodes
+	
+	def exhaustive_search(self, valid_nodes, k, d, *argv):
+		print("""if the exhaustive search was done at the same time as the recursive group the efficiency could improve.
+		(if found k neighbors at d< max_d the next neighbour to accept must be replacing the further apart from one from
+		the already chosen -> we can reduce max_d to max(dist(point, accepted_neighbors)))""")
