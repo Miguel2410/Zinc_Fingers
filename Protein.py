@@ -15,7 +15,7 @@ class Protein:
       self.hys_cys = hys_cys
 
 
-   def get_atribtes(self, *args):
+   def get_atributes(self, *args):
 	   keys=[x for x in self.__dict__.keys() if x in args]
 	   values=[ self.__dict__[key] for key in keys]
 	   return values
@@ -24,8 +24,8 @@ class Protein:
 
       if args==tuple():
          args = [x for x in self.__dict__.keys() if x not in ("name","__init__","get_atributes", "distance", "toTupple")]
-      spatial_pos = self.get_atribtes(*args)
-      spatial_pos_2  = protein_2.get_atribtes(*args)
+      spatial_pos = self.get_atributes(*args)
+      spatial_pos_2  = protein_2.get_atributes(*args)
 
       for element in spatial_pos:
          if isinstance(element, str):
