@@ -1,4 +1,4 @@
-import pprint
+
 
 class Node:
 	def __init__(self, id='', value=list()):
@@ -78,29 +78,8 @@ def delete_element_and_children(tree, point, depth=0, dimensions=10):
 		else:
 			delete_element_and_children(tree.right, point)
 			
-def restore_tree(tree):
-	list_elements = list()
-	if tree.left is not None:
-		restore_tree(tree.left)
-	if tree.right is not None:
-		restore_tree(tree.right)
-	
-def delete_element(tree, point, depth=0, dimensions=10):
-	dim = depth % dimensions
-	if tree is None:
-		return None
-	
-	if tree.root.id == point[len(point)-1]:
-		
-		tree.root = Node()
-	else:
-		if point[dim] < int(tree.root.value[dim]):
-			delete_element(tree.left, point)
-		else:
-			delete_element(tree.right, point)
 			
-			
-def nearest_neighbor(root, point, depth=0, dimensions=10, list =list()):
+def nearest_neighbor(root, point, depth=0, dimensions=10):
 	
 	if root is None:
 		return None
@@ -122,7 +101,7 @@ def nearest_neighbor(root, point, depth=0, dimensions=10, list =list()):
 	return closer
 
 
-def k_nearest_neighbors(k, root, point, depth=0, dimensions=10, result=list()):
+def k_nearest_neighbors(k, root, point,result=list()):
 	if root is None:
 		return None
 	if(manhattan_distance(root.root.value, point) < k):
