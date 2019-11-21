@@ -64,7 +64,7 @@ class KDNode:
 			else:
 				closer = check_points_closer(coords , opposite.nearest_neighbor(coords , depth + 1 , 10) , closer)
 
-		print ("the point closest is:", closer.name)
+		print ("The Closest protein to your input is:", closer.name)
 		return closer.name
 
 def construct_kd_tree (Protein_list,dimensions,depth=0):

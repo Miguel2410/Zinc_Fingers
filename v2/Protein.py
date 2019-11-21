@@ -50,7 +50,7 @@ class Protein:
 		""" This method compute the distance between the instance of protein and another protein. """
 
 		# Correction for incorrect inputs.
-		print (self.toTupple() + coords)
+		
 		for element in (self.toTupple() + coords):  
 			if isinstance(element, (str, bool)) or (element < 0):
 				raise ValueError(str(element) + "is not correct.")
