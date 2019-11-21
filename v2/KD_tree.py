@@ -1,5 +1,8 @@
 from Protein import Protein
 
+## SUPPORT FUNCTION #######
+""" This funcion take a point and two extra points, and compute which one of P1 or P2 is nearer"""
+
 def check_points_closer(point, p1, p2):
 	
 	if p1 is None:
@@ -13,6 +16,9 @@ def check_points_closer(point, p1, p2):
 			else:
 				closer = p1
 	return closer
+
+
+## KD TREE CLASES AND FUNCTIONS ###############
 
 
 class KDNode:
@@ -33,7 +39,8 @@ class KDNode:
 		}
 
 	def nearest_neighbor(self, coords , depth=0 , dimensions=10):
-		
+		""" This function takes some coordinates, and give you the closest element after the KDtree has been modelled"""
+
 		if self.root is None:
 			return None
 		
@@ -46,20 +53,19 @@ class KDNode:
 			next = self.right
 			opposite = self.left
 
-
-		"""
-		try:
+		if next is None:
+			return None
+		else:
 			closer = check_points_closer(coords , next.nearest_neighbor(coords , depth + 1 , 10) , self.root[1])
-		except:
-			closer = check_points_closer(coords , opposite.nearest_neighbor(coords , depth + 1 , 10) , closer)
-		"""
+		
+		if closer.distance_to_coords(coords) > abs(coords[dim] - self.root[1].toTupple()[dim]):
+			if opposite is None:
+				return None
+			else:
+				closer = check_points_closer(coords , opposite.nearest_neighbor(coords , depth + 1 , 10) , closer)
 
-		closer += (self.root[0] ,)
-		return closer
-
-
-
-
+		print ("the point closest is:", closer.name)
+		return closer.name
 
 def construct_kd_tree (Protein_list,dimensions,depth=0):
 	n = len(Protein_list)

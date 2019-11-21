@@ -45,3 +45,18 @@ class Protein:
 		return manhattan_distance
 		
 
+	def distance_to_coords(self, coords):
+
+		""" This method compute the distance between the instance of protein and another protein. """
+
+		# Correction for incorrect inputs.
+		print (self.toTupple() + coords)
+		for element in (self.toTupple() + coords):  
+			if isinstance(element, (str, bool)) or (element < 0):
+				raise ValueError(str(element) + "is not correct.")
+
+		# Compute the Manhattan distance.
+		subs = ([a - b for a, b in zip(self.toTupple(), coords)])
+		abs_list = [abs(ele) for ele in subs] 
+		manhattan_distance = sum(abs_list)
+		return manhattan_distance

@@ -11,7 +11,6 @@ def main():
 	print (kdtree.toJson())
 	print(kdtree.nearest_neighbor((0 , 0 , 0 , 0 , 0 , 0 , 2 , 0.16981132075471697 , 2 , 0.02358490566037736)))
 
-
 	
 if __name__ == "__main__":
 	main()
