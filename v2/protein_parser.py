@@ -25,7 +25,7 @@ def parse_proteins(directory):
         ZN2C6_occur = 0
         length_factor = 0
 
-        if file.endswith(".pdb") or file.endswith(".ent") or file.endswith(".cif"):
+        if file.endswith(".pdb") or file.endswith(".ent"):
             # Check the Zinc ions
             with open(os.path.join(directory,file),"r") as pdb:
                 for line in pdb:
