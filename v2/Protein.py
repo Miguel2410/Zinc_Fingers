@@ -31,7 +31,10 @@ class Protein:
 		if args==tuple():
 			args = [x for x in self.__dict__.keys() if x not in ("name","__init__","get_atributes", "distance", "toTupple")]
 			spatial_pos = self.get_atributes(*args)
-			spatial_pos_2  = protein_2.get_atributes(*args)
+			if isinstance(protein_2, tuple):
+				spatial_pos_2 = list(protein_2)
+			else:
+				spatial_pos_2  = protein_2.get_atributes(*args)
 
 		# Correction for incorrect inputs.
 		for element in (spatial_pos + spatial_pos_2):  

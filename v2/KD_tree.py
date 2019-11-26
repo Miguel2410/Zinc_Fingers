@@ -43,9 +43,10 @@ class KDNode:
 			if opposite is None:
 				return None
 			else:
+				
 				closer = check_points_closer(coords , opposite.nearest_neighbor(coords , depth + 1 , 10) , closer)
 
-		return closer.name
+		return closer
 
 	def k_nearest_neighbors(self, point , k , result=list()):
 		if self.root is None:
